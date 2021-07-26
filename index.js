@@ -180,7 +180,7 @@ class FileTreeSelectionPrompt extends Base {
     }
 
     try {
-      const children = fs.readdirSync(parentPath, {withFileTypes: true}).map(item => {
+      const children = fs.readdirSync(parentPath, {withFileTypes: true}).filter(item => !/^\./.test(item.name)).map(item => {
         return {
           parent: node,
           type: item.isDirectory() ? 'directory' : 'file',
